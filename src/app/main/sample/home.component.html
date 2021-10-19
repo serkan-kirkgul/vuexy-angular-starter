@@ -1,0 +1,423 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+
+    <!-- Basic Alerts start -->
+    <section id="home-page">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <ul ngbNav #navFilled="ngbNav" class="nav nav-pills" [activeId]="'flight'">
+                <li [ngbNavItem]="'flight'">
+                  <a ngbNavLink>Flight</a>
+                  <ng-template ngbNavContent>
+                    <ul ngbNav #navTabs="ngbNav" class="nav-tabs">
+                      <li ngbNavItem>
+                        <a ngbNavLink (click)="disabled = true">One Way</a>
+                        <ng-template ngbNavContent></ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink (click)="disabled = false">Roundtrip</a>
+                        <ng-template ngbNavContent></ng-template>
+                      </li>
+                    </ul>
+                    <div [ngbNavOutlet]="navTabs" class="mt-2"></div>                    
+                    <form class="flightSearchForm">
+                      <div class="row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              id="departure"
+                              class="form-control"
+                              placeholder="From"
+                              name="departure"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              id="arrival"
+                              class="form-control"
+                              placeholder="To"
+                              name="arrival"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Departure Date</label>
+                            <div class="input-group">
+                              <input class="form-control" placeholder="yyyy-mm-dd" name="depatureDate" [(ngModel)]="basicDPdataDep"
+                                ngbDatepicker #basicDPDep="ngbDatepicker">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-secondary feather icon-calendar" (click)="basicDPDep.toggle()"
+                                  type="button" rippleEffect></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Return Date</label>
+                            <div class="input-group">
+                              <input class="form-control" placeholder="yyyy-mm-dd" name="returnDate" [(ngModel)]="basicDPdataRet"
+                                ngbDatepicker #basicDPRet="ngbDatepicker" [disabled]="disabled">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-secondary feather icon-calendar" (click)="basicDPRet.toggle()"
+                                  type="button" rippleEffect></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Flight Class</label>
+                            <select id="flightClass" name="flightClass" class="form-control">
+                              <option>All</option>
+                              <option>Promo</option>
+                              <option>Economy</option>
+                              <option>Business</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Currency</label>
+                            <select id="currency" name="currency" class="form-control">
+                              <option>EUR</option>
+                              <option>USD</option>
+                              <option>TRY</option>
+                              <option>PKR</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Adult</label>
+                            <select id="adultCount" name="adultCount" class="form-control">
+                              <option *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Child (2-12)</label>
+                            <select id="childCount" name="childCount" class="form-control">
+                              <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Infant (2-12)</label>
+                            <select id="infantCount" name="infantCount" class="form-control">
+                              <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <label>&nbsp;</label>                    
+                          <ngb-accordion #acc="ngbAccordion">
+                            <ngb-panel id="ngb-panel-0">
+                              <ng-template ngbPanelTitle>
+                                <span class="lead collapse-title">Other </span>
+                              </ng-template>
+                              <ng-template ngbPanelContent>
+                                <div class="row">
+                                  <div class="col-md-6 col-12">
+                                    Student
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                    <select id="studentCount" name="studentCount" class="form-control">
+                                      <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 col-12">
+                                    Young
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                    <select id="youngCount" name="youngCount" class="form-control">
+                                      <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 col-12">
+                                    Teacher
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                    <select id="teacherCount" name="teacherCount" class="form-control">
+                                      <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 col-12">
+                                    Senior
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                    <select id="seniorCount" name="seniorCount" class="form-control">
+                                      <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 col-12">
+                                    Military
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                    <select id="militaryCount" name="militaryCount" class="form-control">
+                                      <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </ng-template>
+                            </ngb-panel>
+                          </ngb-accordion>
+                        </div>
+                        <div class="col-12">
+                          <button type="submit" rippleEffect class="btn btn-primary mr-1 float-right">SEARCH FLIGHT</button>
+                        </div>
+                      </div>
+                    </form>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="'hotel'">
+                  <a ngbNavLink>Hotel</a>
+                  <ng-template ngbNavContent>
+                    <form class="hotelSearchForm">
+                      <div class="row">
+                        <div class="col-md-12 col-12">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              id="location"
+                              class="form-control"
+                              placeholder="Location"
+                              name="location"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Check-In Date</label>
+                            <div class="input-group">
+                              <input class="form-control" placeholder="yyyy-mm-dd" name="checkinDate" [(ngModel)]="basicDPdataIn"
+                                ngbDatepicker #basicDPIn="ngbDatepicker">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-secondary feather icon-calendar" (click)="basicDPIn.toggle()"
+                                  type="button" rippleEffect></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Check-Out Date</label>
+                            <div class="input-group">
+                              <input class="form-control" placeholder="yyyy-mm-dd" name="checkoutDate" [(ngModel)]="basicDPdataOut"
+                                ngbDatepicker #basicDPOut="ngbDatepicker">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-secondary feather icon-calendar" (click)="basicDPOut.toggle()"
+                                  type="button" rippleEffect></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Currency</label>
+                            <select id="currency" name="currency" class="form-control">
+                              <option>EUR</option>
+                              <option>USD</option>
+                              <option>TRY</option>
+                              <option>PKR</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="form-group">
+                            <label>Nationality</label>
+                            <select id="nationality" name="nationality" class="form-control">
+                              <option>Turkey</option>
+                              <option>Germany</option>
+                              <option>Austria</option>
+                              <option>Ukraine</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" *ngFor="let r of roomCount">
+                        <div class="col-md-3 col-12">
+                          <br/>
+                          ROOM {{r}} <button type="button" rippleEffect class="btn btn-flat-primary mr-1" *ngIf="roomCount.length == r && r != 1" (click)="roomCount.pop()">X</button>
+                        </div>
+                        <div class="col-md-3 col-12">
+                          <div class="row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-group">
+                                <label>Adult</label>
+                                <select id="adultCount{{r}}" name="adultCount{{r}}" class="form-control">
+                                  <option *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group">
+                                <label>Childs</label>
+                                <select id="childCount{{r}}" name="childCount{{r}}" class="form-control" (change)="childCountChanged($event, r)">
+                                  <option *ngFor="let i of [0,1,2,3,4]">{{i}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="row">
+                            <div class="col-md-3 col-12" *ngFor="let a of childCount[r]">
+                              <div class="form-group">
+                                <label>Child Age {{a}}</label>
+                                <select id="childAge{{a}}" name="childAge{{a}}" class="form-control">
+                                  <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">{{i}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <button type="button" rippleEffect class="btn btn-primary mr-1 float-left" *ngIf="roomCount.length < 4" (click)="roomCount.push(roomCount[roomCount.length-1]+1)">ADD ROOM +</button>
+                          <button type="submit" rippleEffect class="btn btn-primary mr-1 float-right">SEARCH HOTELS</button>
+                        </div>
+                      </div>
+                    </form>
+                  </ng-template>
+                </li>
+              </ul>
+              <div [ngbNavOutlet]="navFilled" class="mt-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body pb-1">
+              <div class="card-title">
+                STATUS MONITOR
+              </div>
+              <ul ngbNav #nav="ngbNav" class="nav nav-pills" [activeId]="'optional'">
+                <li [ngbNavItem]="'optional'">
+                  <a ngbNavLink>Optional Reservation</a>
+                  <ng-template ngbNavContent>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Res. No</th>
+                          <th>Option Date</th>
+                          <th>Begin Date</th>
+                          <th>Leader Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of optionalReservations">
+                          <td>{{ item.bookingNumber }}</td>
+                          <td>{{ item.reservableInfo.optionDate | date: 'dd-MM-yyyy HH:mm' }}</td>
+                          <td>{{ item.beginDate | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.leaderName }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="'onrequest'">
+                  <a ngbNavLink>On Request</a>
+                  <ng-template ngbNavContent>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Res. No</th>
+                          <th>Begin Date</th>
+                          <th>End Date</th>
+                          <th>Service Name</th>
+                          <th>Leader Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of onRequestReservations">
+                          <td>{{ item.bookingNumber }}</td>
+                          <td>{{ item.beginDate | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.endDate | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.serviceName }}</td>
+                          <td>{{ item.leaderName }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="'confirmed'">
+                  <a href="javascript:void(0)" ngbNavLink>Confirmed</a>
+                  <ng-template ngbNavContent>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Res. No</th>
+                          <th>Begin Date</th>
+                          <th>End Date</th>
+                          <th>Service Name</th>
+                          <th>Leader Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of confirmedReservations">
+                          <td>{{ item.bookingNumber }}</td>
+                          <td>{{ item.beginDate | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.endDate | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.serviceName }}</td>
+                          <td>{{ item.leaderName }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="'notconfirmed'">
+                  <a ngbNavLink>Not Confirmed</a>
+                  <ng-template ngbNavContent>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Res. No</th>
+                          <th>Begin Date</th>
+                          <th>End Date</th>
+                          <th>Service Name</th>
+                          <th>Leader Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of notConfirmedReservations">
+                          <td>{{ item.bookingNumber }}</td>
+                          <td>{{ item.beginDate | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.endDate | date: 'dd-MM-yyyy' }}</td>
+                          <td>{{ item.serviceName }}</td>
+                          <td>{{ item.leaderName }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </li>
+              </ul>
+              <div [ngbNavOutlet]="nav" class="mt-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Basic Alerts end -->
+  </div>
+</div>
