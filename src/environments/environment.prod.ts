@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   hmr: false,
-  apiUrl: 'http://localhost:4000'
+  apiUrl: 'https://preprod-services.tourvisio.com/v2'
 };
