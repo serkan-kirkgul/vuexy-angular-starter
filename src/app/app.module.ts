@@ -17,7 +17,7 @@ import { coreConfig } from 'app/app-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { HomeModule } from 'app/main/sample/home.module';
+import { HomeModule } from 'app/main/home/home.module';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import {  ErrorInterceptor, JwtInterceptor } from 'app/auth/helpers'
